@@ -18,7 +18,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter@Setter
+@Getter
+@Setter
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +45,8 @@ public class Employee {
     private List<Address> addresses;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<EmployeeEarning> employeeEarningList;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<EmployeeDeduction> employeeDeductionsList;
     @CreationTimestamp
     private LocalDateTime createdDate;
     @UpdateTimestamp

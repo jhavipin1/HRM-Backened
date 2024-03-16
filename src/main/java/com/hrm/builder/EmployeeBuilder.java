@@ -54,11 +54,20 @@ public class EmployeeBuilder {
                     .map(employeeEarning -> employeeEarningBuilder.getEmployeeEarningDTO(employeeEarning))
                     .collect(Collectors.toList());
         }
+        EmployeeDeductionBuilder employeeDeductionBuilder=new EmployeeDeductionBuilder();
+        List<EmployeeDeductionDTO> employeeDeductionDTOList = null;
+        if (employee.getEmployeeDeductionsList() != null) {
+            employeeDeductionDTOList= employee.getEmployeeDeductionsList()
+                    .stream()
+                    .map(employeeDeduction ->  employeeDeductionBuilder.getEmployeeDeductionDTO(employeeDeduction))
+                    .collect(Collectors.toList());
+        }
 
         return EmployeeResponse.builder()
                 .employeeDTO(getEmployeeDTO(employee))
                 .addressDTOS(addressDTOList)
                 .employeeEarningDTOS(employeeEarningDTOList)
+                .employeeDeductionDTOS(employeeDeductionDTOList)
                 .responseStatus(responseStatus)
                 .build();
     }
